@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <form method="post" action="/hello">
+      <label>好きな文字を入力:</label><input type="text" name="text1" th:value="${text1_value}">
+      <input type="submit" value="送信">
+    </form>
+    <br>
+    <form method="post" action="/hello/db">
+      <label>従業員IDを入力:</label><input type="text" name="text2" th:value="${text2_value}">
+      <input type="submit" value="送信">
+    </form>
+  </body>
+</html>

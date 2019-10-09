@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" rel="stylesheet">
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
+    <title>SignUp</title>
+  </head>
+  <body>
+    <div class="col-sm-5">
+      <div class="page-header">
+        <h1>ユーザー登録画面</h1>
+      </div>
+
+      <form method="post"  th:action="@{/signup}" th:object="${signupForm}">
+        <table class="table table-bordered table-hover">
+          <!-- 入力エリア:ユーザーID -->
+          <tr>
+            <th class="active">ユーザーID</th>
+            <td>
+              <div class="form-group">
+                <input type="text" class="form-control" th:field="*{userId}" th:classappend="${#fields.hasErrors('userId')}? 'is-invalid'">
+                <span class="text-danger" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}">userId Error</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- 入力エリア:パスワード -->
+          <tr>
+            <th class="active">パスワード</th>
+            <td>
+              <div class="form-group">
+                <input type="text" class="form-control" th:field="*{password}" th:classappend="${#fields.hasErrors('password')}? 'is-invalid'">
+                <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">password Error</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- 入力エリア:ユーザー名 -->
+          <tr>
+            <th class="active">ユーザー名</th>
+            <td>
+              <div class="form-group">
+                <input type="text" class="form-control" th:field="*{userName}" th:classappend="${#fields.hasErrors('userName')}? 'is-invalid'">
+                <span class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">userName Error</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- 入力エリア:誕生日 -->
+          <tr>
+            <th class="active">誕生日</th>
+            <td>
+              <div class="form-group">
+                <input type="text" class="form-control"  placeholder="yyyy/MM/dd"  th:field="*{birthDay}" th:classappend="${#fields.hasErrors('birthDay')}? 'is-invalid'">
+                <span class="text-danger" th:if="${#fields.hasErrors('birthDay')}" th:errors="*{birthDay}">birthDay Error</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- 入力エリア:年齢 -->
+          <tr>
+            <th class="active">年齢</th>
+            <td>
+              <div class="form-group">
+                <input type="text" class="form-control" th:field="*{age}" th:classappend="${#fields.hasErrors('age')}? 'is-invalid'">
+                <span class="text-danger" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">age Error</span>
+              </div>
+            </td>
+          </tr>
+
+          <!-- 入力エリア:結婚ステータス -->
+          <tr>
+            <th class="active">結婚</th>
+            <td>
+              <div class="form-group">
+                <!-- ラジオボタンの実装 -->
+                <div th:each="item:${radioMarriage}">
+                  <input type="radio" name="radioMarriage" th:text="${item.key}" th:value="${item.value}" th:field="*{marriage}" th:classappend="${#fields.hasErrors('marriage')}? 'is-invalid'">
+                  <span class="text-danger" th:if="${#fields.hasErrors('marriage')}" th:errors="*{marriage}">merriage Error</span>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+        <!-- エラーメッセージの一覧表示
+          <ul>
+            <li th:each="error:${#fields.detailedErrors()}">
+              <span th:text="${error.message}">Errormessage</span>
+            </li>
+          </ul>
+        -->
+
+        <!-- ユーザー登録ボタン -->
+        <button class="btn btn-primary" type="submit">ユーザー登録</button>
+      </form>
+    </div>
+  </body>
+</html>
