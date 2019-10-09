@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +33,34 @@ public class UserRestController {
      * @param userId
      * @return
      */
-    @RequestMapping(value = "/rest/get/{id:.+}")
+    @RequestMapping(value = "/rest/get/{id:.+}", method = RequestMethod.GET)
     public User getUserOne(@PathVariable("id") String userId) {
 
         return service.selectOne(userId);
+    }
+
+    /**
+     * 一件登録時のRESTコントローラー
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/rest/insert", method = RequestMethod.POST)
+    public String postUserOne(@RequestBody User user) {
+
+        boolean result = service.insertOne(user);
+
+        String str = "";
+
+        // 追加結果
+        if (result) {
+            // ok
+            str = "{\"result\":\"ok\"}";
+        } else {
+            // error
+            str = "{\"result\":\"error\"}";
+        }
+
+        // 結果用の文字列を返す
+        return str;
     }
 }

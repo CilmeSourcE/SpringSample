@@ -11,7 +11,7 @@ public interface RestService {
      * @param user
      * @return
      */
-    public boolean insert(User user);
+    public boolean insertOne(User user);
 
     /**
      * 1件取得メソッド

@@ -20,8 +20,13 @@ public class RestServiceJdbcImpl implements RestService {
     UserDao dao;
 
     @Override
-    public boolean insert(User user) {
-        // TODO 自動生成されたメソッド・スタブ
+    public boolean insertOne(User user) {
+
+        int result = dao.insertOne(user);
+
+        if (result > 0) {
+            return true;
+        }
         return false;
     }
 
