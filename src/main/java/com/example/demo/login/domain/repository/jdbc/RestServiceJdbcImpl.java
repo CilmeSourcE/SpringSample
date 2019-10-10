@@ -41,8 +41,13 @@ public class RestServiceJdbcImpl implements RestService {
     }
 
     @Override
-    public boolean update(String userId) {
-        // TODO 自動生成されたメソッド・スタブ
+    public boolean update(User user) {
+
+        int result = dao.updateOne(user);
+
+        if (result > 0) {
+            return true;
+        }
         return false;
     }
 

@@ -63,4 +63,29 @@ public class UserRestController {
         // 結果用の文字列を返す
         return str;
     }
+
+    /**
+     * ユーザー情報更新時のRESTコントローラー
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/rest/update", method = RequestMethod.PUT)
+    public String putUserOne(@RequestBody User user) {
+
+        boolean result = service.update(user);
+
+        String str = "";
+
+        // 更新結果
+        if (result) {
+            // ok
+            str = "{\"result\":\"ok\"}";
+        } else {
+            // error
+            str = "{\"result\":\"error\"}";
+        }
+
+        // 結果用の文字列を返す
+        return str;
+    }
 }

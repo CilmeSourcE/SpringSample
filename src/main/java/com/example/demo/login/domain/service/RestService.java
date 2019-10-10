@@ -27,11 +27,11 @@ public interface RestService {
     public List<User> selectAll();
 
     /**
-     * 1件更新メソッド
-     * @param userId
+     * 更新メソッド
+     * @param user
      * @return
      */
-    public boolean update(String userId);
+    public boolean update(User user);
 
     /**
      * 1件削除メソッド
