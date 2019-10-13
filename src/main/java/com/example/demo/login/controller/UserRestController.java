@@ -88,4 +88,29 @@ public class UserRestController {
         // 結果用の文字列を返す
         return str;
     }
+
+    /**
+     * ユーザー削除時のRESTコントローラー
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/rest/delete/{id:.+}", method = RequestMethod.DELETE)
+    public String deleteUserOne(@PathVariable("id") String userId) {
+
+        boolean result = service.delete(userId);
+
+        String str = "";
+
+        // 削除結果
+        if (result) {
+            // ok
+            str = "{\"result\":\"ok\"}";
+        } else {
+            // error
+            str = "{\"result\":\"error\"}";
+        }
+
+        // 結果用の文字列を返す
+        return str;
+    }
 }

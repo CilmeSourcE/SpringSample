@@ -53,7 +53,12 @@ public class RestServiceJdbcImpl implements RestService {
 
     @Override
     public boolean delete(String userId) {
-        // TODO 自動生成されたメソッド・スタブ
+
+        int result = dao.deleteOne(userId);
+
+        if (result > 0) {
+            return true;
+        }
         return false;
     }
 
