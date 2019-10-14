@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- クラス指定 -->
+<mapper
+  namespace="com.example.demo.login.domain.repository.mybatis.UserMapper2">
+
+  <!-- マッピング定義 -->
+  <resultMap type="com.example.demo.login.domain.model.User"
+    id="user">
+    <id column="user_id" property="userId" />
+    <result column="password" property="password" />
+    <result column="user_name" property="userName" />
+    <result column="birthday" property="birthDay" />
+    <result column="age" property="age" />
+    <result column="marriage" property="marriage" />
+    <result column="role" property="role" />
+  </resultMap>
+
+  <!-- INSERT -->
+  <insert id="insert"
+    parameterType="com.example.demo.login.domain.model.User">
+    INSERT INTO m_user (
+    user_id,
+    password,
+    user_name,
+    birthday,
+    age,
+    marriage,
+    role
+    ) VALUES (
+    #{userId},
+    #{password},
+    #{userName},
+    #{birthDay},
+    #{age},
+    #{marriage},
+    #{role} )
+  </insert>
+
+  <!-- SELECT(1件) -->
+  <select id="selectOne" parameterType="string" resultMap="user">
+    SELECT
+    user_id,
+    password,
+    user_name,
+    birthday,
+    age,
+    marriage,
+    role
+    FROM m_user
+    WHERE
+    user_id = #{userId}
+  </select>
+
+  <!-- SELECT(全件) -->
+  <select id="selectAll" resultMap="user">
+    SELECT
+    user_id,
+    password,
+    user_name,
+    birthday,
+    age,
+    marriage,
+    role
+    FROM m_user
+  </select>
+
+  <!-- UPDATE -->
+  <update id="updateOne"
+    parameterType="com.example.demo.login.domain.model.User">
+    UPDATE m_user SET
+    password = #{password},
+    user_name = #{userName},
+    birthday = #{birthDay},
+    age = #{age},
+    marriage = #{marriage}
+    WHERE
+    user_id = #{userId}
+  </update>
+
+  <!-- DELETE -->
+  <delete id="deleteOne" parameterType="string">
+    DELETE FROM m_user
+    WHERE user_id = #{userId}
+  </delete>
+</mapper>
