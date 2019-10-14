@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,6 +29,18 @@ public class UserDaoTest {
     public void countTest1() {
 
         // 結果が2であることをテスト
-        assertEquals(dao.count(), 2);
+        assertEquals(2, dao.count());
+    }
+
+    /**
+     * カウントメソッドのテスト2
+     * testdata.sql実行後にテスト
+     */
+    @Test
+    @Sql("/testdata.sql")
+    public void countTest2() {
+
+        // testdata.sql実行後なので、結果が3であることをテスト
+        assertEquals(3, dao.count());
     }
 }
